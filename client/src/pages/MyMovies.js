@@ -11,12 +11,20 @@ function MyMovies() {
   /* Get all movies from the redis database */
 
   /* Delete movie from the redis database */
-  
+  const [movie, setMovie] = useState({});
+  const deleteMovie = () => {
+    axios.delete('http://localhost:3001/movies/delete/' , { movie: movie}).then((response) => {
+      console.log(response.data);
+    });
+  }
+
+
   return (
     <Container>
     <h1 style={{paddingTop: "2rem"}}>My Movies</h1>
       <Stack direction="horizontal" gap={3}>
       </Stack>
+      <button onClick={deleteMovie}>"Delete"</button>
     </Container>
   )
 }
