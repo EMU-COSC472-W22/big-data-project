@@ -6,6 +6,9 @@ import MyMovies from './pages/MyMovies';
 import PageNotFound from './pages/PageNotFound';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Import css
+import './components/Navigation.css';
+
 function App() {
   return (
     <BrowserRouter>

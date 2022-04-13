@@ -1,0 +1,25 @@
+.color-nav {
+    background-color: #f6d2e0;
+    color: blueviolet;
+    border-bottom: 5px solid #f8b7cd;
+}
+
+body {
+    background-color: #c8e7f5;
+}
+
+h1 {
+    color: darkgray;
+}
+
+p {
+    color: blue;
+}
+
+a:hover:not(.active) {
+    background-color: #c8e7f5;
+}
+
+.active {
+    background-color: #c8e7f5;
+}
