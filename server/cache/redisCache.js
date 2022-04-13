@@ -35,7 +35,7 @@ async function clearCache(movieId){
     return await clear(field);
 }
 async function clear(field){
-    return  await client.del(field);
+    return  await client.HDEL(movieList, field);
 }
 
 module.exports.getCache = getCache

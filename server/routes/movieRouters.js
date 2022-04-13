@@ -32,8 +32,9 @@ router.get('/search/:movieTitle', (req, res, next) => {
     })();
 })
 
-router.delete('/:movieId', (req, res, next) => {
-    const { movieId } = req.params;
+router.delete('/delete', (req, res, next) => {
+    const movieData =  req.body.movie;
+    const movieId = "tt0317219";
     (async()=>{
         let result = await clearCache(movieId);
         if(result === 1){
