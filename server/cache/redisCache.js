@@ -4,6 +4,11 @@ const client = redis.createClient(redisPort);
 
 const expirationTime = 300; //second
 const movieKeyFormat = 'movie.id=';
+/* variable for hashKeyFormat should go here. fields will be the movie.title */
+
+client.on("error", function (err) {
+    console.log("Error " + err);
+});
 
 async function setCache(movieId, data){
     var key = movieKeyFormat+movieId;
@@ -11,7 +16,7 @@ async function setCache(movieId, data){
 }
 
 async function set(key, data){
-     await client.setex(key,expirationTime, data);
+     await client.set(key, data);
 }
 
 async function getCache(movieId){

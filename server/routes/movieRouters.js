@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { getData } =  require('../data_acces_layer/data');
+const { getData, getDataByMovieTitle } =  require('../data_acces_layer/data');
 const { getCache, setCache, clearCache } = require('../cache/redisCache');
 
 router.get('/:movieId', (req, res, next) => {
@@ -22,6 +22,16 @@ router.get('/:movieId', (req, res, next) => {
     })();
 });
 
+/* Search for movies from the API */
+router.get('/search/:movieTitle', (req, res, next) => {
+    const movieTitle = req.params.movieTitle;
+    
+    (async() => {
+        let data = await getDataByMovieTitle(movieTitle);
+        res.send(data);
+    })();
+})
+
 router.delete('/:movieId', (req, res, next) => {
     const { movieId } = req.params;
     (async()=>{
@@ -33,4 +43,4 @@ router.delete('/:movieId', (req, res, next) => {
     })();
 });
 
-module.exports = router
+module.exports = router;
