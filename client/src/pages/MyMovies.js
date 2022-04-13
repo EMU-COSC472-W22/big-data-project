@@ -16,8 +16,6 @@ function MyMovies() {
     <Container>
     <h1 style={{paddingTop: "2rem"}}>My Movies</h1>
       <Stack direction="horizontal" gap={3}>
-        <Form.Control className="me-auto" placeholder="Search..." />
-        <Button variant="secondary">Submit</Button>
       </Stack>
     </Container>
   )

@@ -3,38 +3,39 @@ let redisPort = process.env.PORT || 6379;
 const client = redis.createClient(redisPort);
 
 const expirationTime = 300; //second
-const movieKeyFormat = 'movie.id=';
+const movieFieldFormat = 'movie.id=';
+const movieList = "mymovies";
 /* variable for hashKeyFormat should go here. fields will be the movie.title */
 
 client.on("error", function (err) {
     console.log("Error " + err);
 });
 
-async function setCache(movieId, data){
-    var key = movieKeyFormat+movieId;
-    return await set(key,JSON.stringify(data))
+async function setCache(movieId, value){
+    var field = movieFieldFormat + movieId;
+    return await set(field, JSON.stringify(value))
 }
 
-async function set(key, data){
-     await client.set(key, data);
+async function set(field, value){
+    await client.HSET(movieList, field, value);
 }
 
 async function getCache(movieId){
-    var key = movieKeyFormat+movieId;
-    var data = await get(key);
-    return JSON.parse(data);
+    var field = movieFieldFormat + movieId;
+    var value = await get(field);
+    return JSON.parse(value);
 }
 
-async function get(key) {
-     return await client.get(key);
+async function get(field) {
+    return await client.get(field);
 }
 
 async function clearCache(movieId){
-    var key = movieKeyFormat+movieId;
-    return await clear(key);
+    var field = movieFieldFormat + movieId;
+    return await clear(field);
 }
-async function clear(key){
-      return  await client.del(key);
+async function clear(field){
+    return  await client.del(field);
 }
 
 module.exports.getCache = getCache

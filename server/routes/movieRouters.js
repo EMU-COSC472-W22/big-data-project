@@ -43,4 +43,14 @@ router.delete('/:movieId', (req, res, next) => {
     })();
 });
 
+router.post('/addmovies', (req, res, next) => {
+    const movieData =  req.body.movie;
+    const movieId = movieData.imdbID;
+
+    (async() => {       
+        await setCache(movieId, movieData);
+        return res.json(movieData);
+    })();
+});
+
 module.exports = router;

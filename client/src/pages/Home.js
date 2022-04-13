@@ -20,7 +20,7 @@ function Home() {
   /* Search movie from OMDb API */
   const searchMovie = () => {
     let formattedMovieTitle = movieTitle.split(' ').join('+');
-    axios.get(`http://localhost:3001/movies/search/${formattedMovieTitle}`).then((response) => {
+    axios.get(`http://localhost:3001/movies/search/${ formattedMovieTitle }`).then((response) => {
       console.log(response.data);  
       setMovie(response.data);
     });
@@ -28,7 +28,9 @@ function Home() {
 
   /* Add movie to the redis database */
   const addMovie = () => {
-
+    axios.post(`http://localhost:3001/movies/addmovies/`, { movie: movie }).then((response) => {
+      console.log(response.data);  
+    });
   }
 
   return (

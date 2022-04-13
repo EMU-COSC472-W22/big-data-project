@@ -10,14 +10,9 @@ function Navigation() {
     return (
         <div>
             <Navbar style={{paddingLeft: "2rem"}} bg="dark" variant="dark" >
-                <Navbar.Brand> <Link style={{textDecoration: "none", color: "white"}} to='/'>Home</Link> </Navbar.Brand>
-                <Container>
-                    <Nav>
-                        <Link style={{textDecoration: "none", color: "white"}} to='/mymovies'>My Movies</Link>
-                    </Nav>
-                </Container>
+                    <Navbar.Brand><Link style={{textDecoration: "none", color: "white"}} to='/'>Home</Link></Navbar.Brand>
+                    <Navbar.Brand><Link style={{textDecoration: "none", color: "white"}} to='/mymovies'>My Movies</Link></Navbar.Brand>
             </Navbar>
-            
             <Outlet/>
         </div>
     );
