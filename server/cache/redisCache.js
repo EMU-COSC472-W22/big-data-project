@@ -20,14 +20,15 @@ async function set(field, value){
     await client.HSET(movieList, field, value);
 }
 
-async function getCache(movieId){
-    var field = movieFieldFormat + movieId;
-    var value = await get(field);
-    return JSON.parse(value);
+async function getCache(){
+    // var field = movieFieldFormat + movieId;
+    var fieldsAndValues = await get();
+    console.log(fieldsAndValues);
+    return Object.values(fieldsAndValues);
 }
 
-async function get(field) {
-    return await client.get(field);
+async function get() {
+    return await client.HGETALL(movieList);    // returns an array ['field1', 'value1', 'field2', 'value2',...]
 }
 
 async function clearCache(movieId){
@@ -35,7 +36,8 @@ async function clearCache(movieId){
     return await clear(field);
 }
 async function clear(field){
-    return  await client.HDEL(movieList, field);
+    return await client.HDEL(movieList, field);
+    // return await client.FLUSHALL();
 }
 
 module.exports.getCache = getCache

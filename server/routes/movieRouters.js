@@ -22,6 +22,16 @@ router.get('/:movieId', (req, res, next) => {
     })();
 });
 
+router.get("/list", (req, res, next) => {
+    // const movieList = getCache();
+
+    (async() => {
+        let movieList = await getCache();
+        return res.send(movieList);
+        
+    })();
+})
+
 /* Search for movies from the API */
 router.get('/search/:movieTitle', (req, res, next) => {
     const movieTitle = req.params.movieTitle;
@@ -33,8 +43,9 @@ router.get('/search/:movieTitle', (req, res, next) => {
 })
 
 router.delete('/delete', (req, res, next) => {
-    const movieData =  req.body.movie;
-    const movieId = "tt0317219";
+    const movieData = req.body.item;
+    console.log(movieData)
+    const movieId = movieData.imdbID;
     (async()=>{
         let result = await clearCache(movieId);
         if(result === 1){
@@ -45,7 +56,7 @@ router.delete('/delete', (req, res, next) => {
 });
 
 router.post('/addmovies', (req, res, next) => {
-    const movieData =  req.body.movie;
+    const movieData = req.body.movie;
     const movieId = movieData.imdbID;
 
     (async() => {       
