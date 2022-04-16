@@ -4,30 +4,36 @@ const router = express.Router();
 const { getData, getDataByMovieTitle } =  require('../data_acces_layer/data');
 const { getCache, setCache, clearCache } = require('../cache/redisCache');
 
-router.get('/:movieId', (req, res, next) => {
-    const { movieId } = req.params;
+// router.get('/:movieId', (req, res, next) => {
+//     const { movieId } = req.params;
 
-    (async() => {
-        let data = await getCache(movieId);
-        if(data !== null){
-            return res.json(data);
-        }
+//     (async() => {
+//         let data = await getCache(movieId);
+//         if(data !== null){
+//             return res.json(data);
+//         }
         
-        data = await getData(movieId);
-        if(data !== null){
-            await setCache(movieId, data);
-            return res.json(data);
-        }
-        return res.status(500);
-    })();
-});
+//         data = await getData(movieId);
+//         if(data !== null){
+//             await setCache(movieId, data);
+//             return res.json(data);
+//         }
+//         return res.status(500);
+//     })();
+// });
 
 router.get("/list", (req, res, next) => {
     // const movieList = getCache();
 
     (async() => {
         let movieList = await getCache();
-        return res.send(movieList);
+        if (movieList !== null) {
+            let formattedList = Object.values(movieList);
+            return res.send(formattedList);
+        } else {
+            return null;
+        }
+        
         
     })();
 })

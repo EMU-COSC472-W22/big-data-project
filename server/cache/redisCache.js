@@ -24,7 +24,7 @@ async function getCache(){
     // var field = movieFieldFormat + movieId;
     var fieldsAndValues = await get();
     console.log(fieldsAndValues);
-    return Object.values(fieldsAndValues);
+    return fieldsAndValues;
 }
 
 async function get() {
