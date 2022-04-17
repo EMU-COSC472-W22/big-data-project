@@ -6,12 +6,14 @@ import Form from 'react-bootstrap/Form';
 import Stack from 'react-bootstrap/Stack';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
 
 function Home() {
 
   const [movieTitle, setMovieTitle] = useState("");
   const [movie, setMovie] = useState({});
   const [isEmpty, setIsEmpty] = useState(true);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     setIsEmpty(Object.keys(movie).length === 0);
@@ -31,6 +33,7 @@ function Home() {
     axios.post(`http://localhost:3001/movies/addmovies/`, { movie: movie }).then((response) => {
       console.log(response.data);  
     });
+    setShow(true);
   }
 
   return (
@@ -41,6 +44,11 @@ function Home() {
           <Form.Control value={movieTitle} onChange={(e) => setMovieTitle(e.target.value)} className="me-auto" placeholder="Search for a movie title..." />
           <Button variant="secondary" onClick={searchMovie}>Search</Button>
         </Stack>
+        <br />
+        <Alert show={show} variant="success" >
+          <p className='justify-content-center' >Successfully added to list!</p>
+          <Button onClick={() => setShow(false)} variant="outline-success">Close</Button>
+        </Alert>
         <br />
         { isEmpty ? 
           <p>No movie searched or no movie was found...</p> : 
@@ -57,6 +65,7 @@ function Home() {
           <br />
       </div>
     </Container>
+   
   );
 }
 
