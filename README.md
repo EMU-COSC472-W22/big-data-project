@@ -6,3 +6,11 @@ run locally) that connects to an IMDb API to allow you to search for movies, but
 Below the link to a recorded demo of our website:
 
 https://drive.google.com/file/d/16YTmRa74k17pfGrR8begkCVJ_wv8BD-L/view?usp=sharing
+
+## Home Page
+![image](https://user-images.githubusercontent.com/65355965/165786395-cf9283a8-5855-4921-b606-8ab9d2502b66.png)
+![image](https://user-images.githubusercontent.com/65355965/165786623-45209374-12f1-444e-baa4-4556adedf7e4.png)
+
+## My Movies Page
+![image](https://user-images.githubusercontent.com/65355965/165786967-fdbc1426-abd8-4016-9daf-ba889156ec4e.png)
+The result of the page after adding to your list
